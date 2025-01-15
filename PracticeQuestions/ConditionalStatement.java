@@ -1,3 +1,4 @@
+package PracticeQuestions;
 
 import java.util.Scanner;
 public class ConditionalStatement {

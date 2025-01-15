@@ -1,3 +1,4 @@
+package PracticeQuestions;
 import java.util.*;
 
 public class Loops {
@@ -28,13 +29,13 @@ public class Loops {
 
 
         //Multiplication table: 
-        // System.out.println("Enter a number whose table you want : ");
-        // int n = sc.nextInt();
-        // int nt = 0;
-        // for (int i = 1; i <= 10; i++) {
-        //     nt = n*i;
-        //     System.out.println(nt);
-        // }
+        System.out.println("Enter a number whose table you want : ");
+        int n = sc.nextInt();
+        int nt = 0;
+        for (int i = 1; i <= 10; i++) {
+            nt = n*i;
+            System.out.println(nt);
+        }
 
 
         // Factorail of a number:

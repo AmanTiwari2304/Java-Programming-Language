@@ -1,3 +1,4 @@
+package PracticeQuestions;
 // Average of three number 
 import java.util.Scanner;
 

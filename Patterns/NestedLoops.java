@@ -36,7 +36,6 @@ public class NestedLoops {
                 System.out.print(ch);
                 ch++;
             }
-
             System.out.println();
             // ch++;
         }

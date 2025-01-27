@@ -61,8 +61,8 @@ public class ArraysCC {
         int totalpair = 0;
         int largestNumOFSubArrays = Integer.MIN_VALUE;
         int smallestNumOFSubArrays = Integer.MAX_VALUE;
-        for (int i = 0; i < numbers.length; i++) {
-            for (int j = i; j < numbers.length; j++) {
+        for (int i = 0; i <= numbers.length; i++) {
+            for (int j = i; j <= numbers.length; j++) {
                 int sumOfSubArrays = 0;
                 for (int j2 = i; j2 < j; j2++) {
                     System.out.print(numbers[j2]+" ");
@@ -84,8 +84,50 @@ public class ArraysCC {
         System.out.println("Smallest number of sum of array is : "+smallestNumOFSubArrays);
     }
 
+    public static void prefixSum(int numbers[]){
+        int currSum = 0;
+        int maxSum = Integer.MIN_VALUE;
+        int prefix[] = new int[numbers.length];
+
+        //Calculate prefix array
+        prefix[0] = numbers[0];
+        for (int i = 1; i < prefix.length; i++) {
+            prefix[i] = prefix[i-1] + numbers[i];
+        }
+
+        for (int i = 0; i < numbers.length; i++) {
+            int start = i;
+            for (int j = 0; j < numbers.length; j++) {
+                int end = j;
+
+                currSum = start == 0 ? prefix[end] : prefix[end] - prefix[start-1];
+
+                if (maxSum < currSum) {
+                    maxSum = currSum;
+                }
+            }
+        }
+        System.out.println("Max Sum = " + maxSum);
+    }
+
+    public static void kadanes(int numbers[]){
+        int ms = Integer.MIN_VALUE;
+        int cs = 0;
+
+        for (int i = 0; i < numbers.length; i++) {
+            cs = cs + numbers[i];
+            if (cs < 0) {
+                cs = 0;
+            }
+            ms = Math.max(cs, ms);
+        }
+
+        System.out.println("Our max subarray sum is : " + ms);
+    }
+
     public static void main(String[] args) {
-        int numbers[] = {2, 4, 6, 8, 10, 12, 14, 16};
+        // int numbers[] = {2, 4, 6, 8, 10, 12, 14, 16};
+        int numbers[] = {1, -2, 6, -1, 3};
         // int key = 10;
         // update(marks);
         // largestNum(numbers);
@@ -95,7 +137,9 @@ public class ArraysCC {
         //     System.out.print(numbers[i] + ", " );
         // }
         // pairsOfArray(numbers);
-        subArrays(numbers);
+        // subArrays(numbers);
+        // prefixSum(numbers);
+        kadanes(numbers);
         
 
        

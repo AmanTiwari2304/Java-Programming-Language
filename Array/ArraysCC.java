@@ -125,9 +125,36 @@ public class ArraysCC {
         System.out.println("Our max subarray sum is : " + ms);
     }
 
+    public static void trappedRainWater(int height[]){
+        int n = height.length;
+        // left max boundary:-
+        int leftMax[] = new int[n];
+        leftMax[0] = height[0];
+        for (int i = 1; i < n; i++) {
+            leftMax[i] = Math.max(height[i], leftMax[i-1]);
+        }
+
+        //Right max boundary:-
+        int rightMax[] = new int[n];
+        rightMax[n-1] = height[n-1];
+        for (int i = n-2; i >=0; i--) {
+            rightMax[i] = Math.max(height[i], rightMax[i+1]);
+        }
+
+        //loop:-
+        int trappedWater = 0;
+        for (int i = 0; i < n; i++) {
+            int waterLevel = Math.min(leftMax[i], rightMax[i]);
+            trappedWater += waterLevel - height[i] ;
+        }
+        System.out.println(trappedWater);
+
+    }
+
     public static void main(String[] args) {
         // int numbers[] = {2, 4, 6, 8, 10, 12, 14, 16};
-        int numbers[] = {1, -2, 6, -1, 3};
+        // int numbers[] = {1, -2, 6, -1, 3};
+        int height[] = {4, 2, 6, 3, 2, 5};
         // int key = 10;
         // update(marks);
         // largestNum(numbers);
@@ -139,7 +166,8 @@ public class ArraysCC {
         // pairsOfArray(numbers);
         // subArrays(numbers);
         // prefixSum(numbers);
-        kadanes(numbers);
+        // kadanes(numbers);
+        trappedRainWater(height);
         
 
        

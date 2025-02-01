@@ -1,10 +1,10 @@
 import java.util.*;
 
 public class matrixArray {
-    public static boolean search(int martix[][] , int key){
-        for (int i = 0; i < martix.length; i++) {
-            for (int j = 0; j < martix[0].length ; j++) {
-                if (martix[i][j] == key) {
+    public static boolean search(int matrix[][] , int key){
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length ; j++) {
+                if (matrix[i][j] == key) {
                     System.out.print("Found at cell " + "( " + i + "," + j + " )");
                     return true;
                 }   
@@ -14,14 +14,14 @@ public class matrixArray {
         return false;
     }
     
-    public static void searchMaxValue(int martix[][] , int maxNum , int minNum){
-        for (int i = 0; i < martix.length; i++) {
-            for (int j = 0; j < martix[0].length ; j++) {
-                if (martix[i][j] > maxNum) {
-                    maxNum = Math.max(maxNum, martix[i][j]);
+    public static void searchMaxValue(int matrix[][] , int maxNum , int minNum){
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length ; j++) {
+                if (matrix[i][j] > maxNum) {
+                    maxNum = Math.max(maxNum, matrix[i][j]);
                 }
-                if (martix[i][j] < minNum) {
-                    minNum = Math.min(minNum, martix[i][j]);
+                if (matrix[i][j] < minNum) {
+                    minNum = Math.min(minNum, matrix[i][j]);
                 }   
             }
         }
@@ -48,7 +48,7 @@ public class matrixArray {
             }
 
             //Bottom , here row will be fix
-            for (int j = endCol-1; j >= startRow; j--) {
+            for (int j = endCol-1; j >= startCol; j--) {
                 if (startCol == endCol) {
                     break;
                 }
@@ -70,24 +70,32 @@ public class matrixArray {
         }
     }
 
-    public static void diagonalSum(int martix[][]){
+    public static void diagonalSum(int matrix[][]){ // O(n^2)
         int primarySum = 0;
         int secondarySum = 0;
-        int startRow = 0;
-        int endCol = martix[0].length -1 ;
+        // int startRow = 0;
+        // int endCol = matrix[0].length -1 ;
 
-        for (int i = 0; i < martix.length; i++) {
-            for (int j = 0; j < martix[0].length; j++) {
-               if (i == j) {
-                primarySum = primarySum + martix[i][j] ;
-               } 
-               else if (i==startRow && j==endCol && i!=j) {
-                secondarySum = secondarySum + martix[i][j] ;
-               }
+        // for (int i = 0; i < matrix.length; i++) {
+        //     for (int j = 0; j < matrix[0].length; j++) {
+        //        if (i == j) {
+        //         primarySum = primarySum + matrix[i][j] ;
+        //        } 
+        //        else if (i==startRow && j==endCol && i!=j) {
+        //         secondarySum = secondarySum + matrix[i][j] ;
+        //        }
+        //     }
+        //     startRow++;
+        //     endCol--;
+
+        // }
+
+        for (int i = 0; i < matrix.length; i++) {
+            primarySum += matrix[i][i];
+
+            if (i != matrix.length -i -1) {
+                secondarySum += matrix[i][matrix.length -i -1];
             }
-            startRow++;
-            endCol--;
-
         }
 
 
@@ -96,16 +104,52 @@ public class matrixArray {
         System.out.println("Diagonal sum : " + (primarySum+secondarySum));
     }
 
+    public static boolean staircaseSearchFirstMethod(int matrix[][], int key){
+        int row = 0 , col = matrix[0].length-1;
+
+        while (row < matrix.length && col >= 0) {
+            if (matrix[row][col] == key) {
+                System.out.println("Found key at (" + row + "," + col +")");
+                return true;
+            }
+            else if (key < matrix[row][col]) {
+                col -- ;
+            }
+            else {
+                row ++ ;
+            }
+        }
+
+        return false;
+    }
+
+    public static boolean staircaseSearchSecondMethod(int matrix[][], int key){
+        int row = matrix.length -1 , col = 0;
+        while (row >= 0 && col < matrix[0].length) {
+            if (matrix[row][col] == key) {
+                System.out.println("Found key at ("+ row + "," + col +")");
+                return true;
+            }
+            else if (key < matrix[row][col]) {
+                row -- ;
+            }
+            else {
+                col ++ ;
+            }
+        }
+
+        return false;
+    }
     
     public static void main(String[] args) {
-        // int martix[][] = new int[3][3];
-        int martix[][] =  { {1, 2, 3, 4 },
+        // int matrix[][] = new int[3][3];
+        int matrix[][] =  { {1, 2, 3, 4 },
                             {5, 6, 7, 8 },
                             {9, 10, 11, 12},
                             {13, 14, 15, 16}};
-        int n = martix.length;
-        int m = martix[0].length;
-        int key = 5;
+        int n = matrix.length;
+        int m = matrix[0].length;
+        int key = 14;
         int maxNum = Integer.MIN_VALUE;
         int minNum = Integer.MAX_VALUE;
     
@@ -113,22 +157,24 @@ public class matrixArray {
         // Scanner sc = new Scanner(System.in);
         // for (int i = 0; i < n ; i++) {
         //     for (int j = 0; j < m ; j++) {
-        //         martix[i][j] = sc.nextInt(); 
+        //         matrix[i][j] = sc.nextInt(); 
         //     }
         // }
 
         //Output
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
-                System.out.print(martix[i][j] + " ");
+                System.out.print(matrix[i][j] + " ");
             }
             System.err.println();
         }
 
-        // search(martix, key);
-        // searchMaxValue(martix, maxNum, minNum);
-        // spiralPrintOfMatrix(martix);
-        diagonalSum(martix);
+        // search(matrix, key);
+        // searchMaxValue(matrix, maxNum, minNum);
+        // spiralPrintOfMatrix(matrix);
+        // diagonalSum(matrix);
+        // staircaseSearchFirstMethod(matrix , key);
+        staircaseSearchSecondMethod(matrix , key);
         
     }
 }

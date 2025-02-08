@@ -37,8 +37,11 @@ public class OOPS {
         // Hero.run();
         // Hero.fuel(); 
 
-        FlyingCars jagota = new FlyingCars();
+        // FlyingCars jagota = new FlyingCars();
         // Vehicle -> Cars -> FlyingCar
+
+        Queen q = new Queen();
+        q.moves();
     }
     
 }
@@ -114,7 +117,7 @@ class Dog extends Mammal{
 }
 
 
-// Method Overloding 
+// Method Overloading 
 class Calculator {
     int sum (int a, int b){
         return a + b; 
@@ -166,3 +169,29 @@ class Bike extends Vehicle{
         System.out.println("They use Petrol");
     }
 }
+
+// InterFace 
+
+interface chessPlayer {
+    void moves();
+   
+}
+
+class Queen implements chessPlayer {
+    public void moves() {
+        System.out.println("Left, Right, Up, Down, Diagonal (in all 4 directions ) ");
+    }
+}
+
+class Rook implements chessPlayer {
+    public void moves() {
+        System.out.println("Left, Right, Up, Down,  ) ");
+    }
+}
+
+class King implements chessPlayer {
+    public void moves() {
+        System.out.println("Left, Right, Up, Down, Diagonal -(One Step) ");
+    }
+}
+

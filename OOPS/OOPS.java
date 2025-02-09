@@ -46,7 +46,7 @@ public class OOPS {
     
 }
 
- class BankAccount {
+class BankAccount {
     public String username;
     private String password;
     public void setPassword(String pwd){

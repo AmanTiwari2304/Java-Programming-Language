@@ -96,32 +96,7 @@ public class basic {
         
     }
 
-    public static int tilingProblem(int n){
-        if (n==0 || n==1) {
-            return 1;
-        }
-        int vertical = tilingProblem(n-1);
-        int horizontal = tilingProblem(n-2);
-        int totalWays = vertical + horizontal;
-        return totalWays;
-    }
-
-    public static void removeDuplicates(String str, int idx, StringBuilder newStr, boolean map[]){
-        // Base
-        if (idx == str.length()) {
-            System.out.println(newStr);
-            return;
-        }
-        // Kaam 
-        char currChar = str.charAt(idx);
-        if (map[currChar - 'a'] == true) {
-            // duplicate
-            removeDuplicates(str, idx+1, newStr, map);
-        } else {
-            map[currChar - 'a'] = true;
-            removeDuplicates(str, idx+1, newStr.append(currChar), map);
-        }
-    }
+   
 
     public static void main(String[] args) {
         // int n = 10;
@@ -138,10 +113,8 @@ public class basic {
         // System.out.println(firstOccurence(arr, 0, 2));
         // System.out.println(lastOccurence(arr, 8, 8));
         // System.out.println(power(2, 10));
-        // System.out.println(powerObtimized(2, 10));
-        // System.out.println(tilingProblem(4));
-        String str = "appnnacollege";
-        removeDuplicates(str, 0, new StringBuilder(""), new boolean[26]);
+        System.out.println(powerObtimized(2, 10));
+       
         
     }
 }

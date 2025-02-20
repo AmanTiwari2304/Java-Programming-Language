@@ -40,6 +40,53 @@ public class sorting {
         return i;
     }
 
+    public static void mergeSort(int arr[], int si, int ei){
+        // base 
+        if (si >= ei) {
+            return;
+        }
+
+        int mid = si + (ei - si)/2;
+        mergeSort(arr, si, mid);
+        mergeSort(arr, mid+1, ei);
+
+        merge(arr, si, mid, ei);
+    } 
+
+    // merging 
+    public static void merge(int arr[], int si, int mid, int ei){
+        int temp[] = new int [ei - si +1];
+        int i = si;
+        int j = mid+1;
+        int k = 0;
+
+        while (i <= mid && j <= ei) {
+        if (arr[i]<arr[j]) {
+                temp[k] = arr[i];
+                i++;
+            } else {
+                temp[k] = arr[j];
+                j++;
+            }
+            k++;
+        }
+        // leftover element of 1st sorted array
+        while (i<=mid) {
+            temp[k++] = arr[i++];
+        }
+        // leftover element of 2nd sorted array
+        while (j<=ei) {
+            temp[k++] = arr[j++];
+        }
+
+        // copying in original array
+        for (k=0, i=si; k < temp.length; k++,i++) {
+            arr[i] = temp[k];
+        }
+
+    }
+
+
     public static int sortedAndRotatedArray(int arr[], int tar, int si, int ei){
         // Base case
         if (si > ei) {
@@ -78,12 +125,13 @@ public class sorting {
     }
 
     public static void main(String[] args) {
-        // int arr[] = {6, 3, 9, 8, 2, 5};
+        int arr[] = {6, 3, 9, 8, 2, 5};
         // quickSort(arr, 0, arr.length -1);
-        // printArr(arr);
+        mergeSort(arr, 0, arr.length -1);
+        printArr(arr);
 
-        int arr[] = {4, 5, 6, 7, 0, 1, 2};
-        int res = sortedAndRotatedArray(arr, 0 , 0, arr.length-1);//he have to return index
-        System.out.println(res);
+        // int arr[] = {4, 5, 6, 7, 0, 1, 2};
+        // int res = sortedAndRotatedArray(arr, 0 , 0, arr.length-1);//he have to return index
+        // System.out.println(res);
     }
 }

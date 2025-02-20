@@ -39,14 +39,14 @@ public class Recursion {
     }
 
     public static void main(String[] args) {
-        // int arr[] = {3, 2, 4, 5, 6, 2, 7, 2, 2};
-        // int key = 2;
-        // allOccurrences(arr, key, 0);
+        int arr[] = {3, 2, 4, 5, 6, 2, 7, 2, 2};
+        int key = 2;
+        allOccurrences(arr, key, 0);
         // printDigit(1235);
         // String str = "Hello";
         // System.out.println(lengthOfString(str));
-        int n = 3;
-        towerOfHanoi(n, "S", "H", "D");
+        // int n = 3;
+        // towerOfHanoi(n, "S", "H", "D");
         
     }
 }

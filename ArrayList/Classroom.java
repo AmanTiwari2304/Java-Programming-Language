@@ -45,12 +45,84 @@ public class Classroom {
                 leftPointer++;
             }else{
                 rightPointer--;
-            }
-
-            
+            }           
         }
-
         System.out.println("Maximum trapped water is : " + maxStoredWater);
+    }
+
+    public static void pairSumBruteForce(ArrayList<Integer> list1, int target){
+        for (int i = 0; i < list1.size(); i++) {
+            for (int j = i+1; j < list1.size(); j++) {
+                if (list1.get(i)+list1.get(j) == target) {
+                    System.out.println("("+list1.get(i) +", "+list1.get(j) +")");
+                }
+            }
+        }
+    }
+
+    public static void pairSumOptimized(ArrayList<Integer> list1, int target){
+        int lp = 0;
+        int rp = list1.size()-1;
+
+        while (lp<rp) {
+            if (list1.get(lp) + list1.get(rp) == target) {
+                System.out.println("("+list1.get(lp) +", "+list1.get(rp) +")");
+                lp++; 
+                rp--;
+            }
+            else if(list1.get(lp) + list1.get(rp) > target){
+                rp--;
+            }
+            else{
+                lp++;
+            }
+        }
+    }
+
+    public static int[] getLpAndRp(ArrayList<Integer> list2){
+        int lp = -1;
+        int rp = -1;
+        for (int i = 0; i < list2.size() - 1; i++) {
+            if (list2.get(i) > list2.get(i + 1)) {
+                lp = i + 1;
+                rp = i;
+                break;
+            }
+        }
+        return new int[]{lp, rp}; // return both lp and rp
+    }
+
+    public static void pairSumInSortedRotated(ArrayList<Integer> list2, int target){
+        getLpAndRp(list2);
+        int[] lpAndRp = getLpAndRp(list2);
+        int lp = lpAndRp[0];
+        int rp = lpAndRp[1];
+
+        while (lp!=rp){        
+            if(list2.get(lp) + list2.get(rp) == target) {
+                System.out.println("("+list2.get(lp) +", "+list2.get(rp) +")");
+                lp++;
+                if (lp == list2.size()-1) {
+                    lp = 0;
+                } 
+                rp--;
+                if (rp == 0) {
+                    rp = list2.size()-1;
+                }
+            }
+            else if(list2.get(lp) + list2.get(rp) > target){
+                rp--;
+                if (rp == 0) {
+                    rp = list2.size()-1;
+                }
+            }
+            else{
+                lp++;
+                if (lp == list2.size()-1) {
+                    lp = 0;
+                }
+            }
+        }
     }
 
     public static void main(String[] args) {
@@ -96,7 +168,27 @@ public class Classroom {
         ht.add(7);
 
         // storedWater(ht); // O(n^2)
-        storedWaterOpimized(ht);
-        
+        // storedWaterOpimized(ht); //O(n)
+
+        // ArrayList<Integer> list1 = new ArrayList<>(); 
+        // for (int i = 1; i <= 6; i++) {
+        //         list1.add(i); // 1 2 3 4 5 6     
+        // }
+        // int target = 5;
+
+        // pairSumBruteForce(list1, target); // O(n^2)
+        // pairSumOptimized(list1, target); // O(n)
+
+        ArrayList<Integer> list2 = new ArrayList<>(); 
+        list2.add(11);
+        list2.add(15);
+        list2.add(6);
+        list2.add(8);
+        list2.add(9);
+        list2.add(10);
+        int target = 16;
+
+        pairSumInSortedRotated(list2, target);
+
     }
 }

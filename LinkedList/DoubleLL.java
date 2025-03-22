@@ -29,6 +29,20 @@ public class DoubleLL {
         newNode.prev = null;
     }
 
+    public void addLast(int data){
+        Node newNode = new Node(data);
+        size++;
+        if (head == null) {
+            head = tail = newNode;
+            return;
+        }
+        tail.next = newNode;
+        newNode.prev = tail;
+        tail = newNode;
+        newNode.next = null;
+    }
+
+
     public void print(){
         Node temp = head;
         while (temp != null) {
@@ -55,7 +69,7 @@ public class DoubleLL {
 
     public static void main(String[] args) {
         DoubleLL DLL = new DoubleLL();
-        
+        DLL.addLast(4);
         DLL.addFirst(3);
         DLL.addFirst(2);
         DLL.addFirst(1);

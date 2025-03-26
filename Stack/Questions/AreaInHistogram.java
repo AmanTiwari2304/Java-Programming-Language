@@ -22,7 +22,7 @@ public class AreaInHistogram {
         
         s = new Stack<>();
         int nextSmallerLeft[] = new int[heights.length];
-        for (int i = 0; i>= heights.length-1; i++) {
+        for (int i = 0; i<= heights.length-1; i++) {
             while (!s.isEmpty() && heights[s.peek()] >= heights[i]) {
                 s.pop();
             }

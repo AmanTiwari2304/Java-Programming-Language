@@ -65,7 +65,7 @@ public class TopView {
                 }
             }else{
                 if (!map.containsKey(curr.hd)) { // first time occurance
-                    map.put(curr.hd, curr.node);
+                    map.put(curr.hd, curr.node); // (key , value) pair
                 }
     
                 if (curr.node.left != null) {

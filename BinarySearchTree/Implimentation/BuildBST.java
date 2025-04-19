@@ -1,5 +1,7 @@
 package BinarySearchTree.Implimentation;
 
+import java.util.ArrayList;
+
 import Queue.Deque.stackWithDeque;
 import Recursion.recursionAdvance;
 
@@ -29,6 +31,15 @@ public class BuildBST {
         }
         return root;
 
+    }
+
+    public static void inorder(Node root){
+        if (root == null) {
+            return ;
+        }
+        inorder(root.left);
+        System.out.print(root.data+ " ");
+        inorder(root.right);
     }
 
     public static boolean searchInBST(Node root, int key){
@@ -101,16 +112,45 @@ public class BuildBST {
         return root;
     }
 
-    public static void inorder(Node root){
+    public static void printRoot2Leaf(Node root, ArrayList<Integer> path){
         if (root == null) {
-            return ;
+            return;
         }
-        inorder(root.left);
-        System.out.print(root.data+ " ");
-        inorder(root.right);
+
+        path.add(root.data);
+        if (root.left == null && root.right == null) {
+            for (int i = 0; i < path.size(); i++) {
+                System.out.print(path.get(i)+" ");
+            }
+            System.out.println();
+        }
+        
+        printRoot2Leaf(root.left, path);
+        printRoot2Leaf(root.right, path);
+        path.remove(path.size()-1); //Backtracking
     }
+
+    public static boolean isValidBST(Node root, Node min, Node max){
+        if (root == null) {
+            return true;
+        }
+
+        if (min != null && root.data <= min.data) {
+            return false;
+        }
+
+        else if (max != null && root.data >= max.data) {
+            return false;
+        }
+
+        return isValidBST(root.left, min, root)
+                && isValidBST(root.right, root, max);
+    }
+
+   
     public static void main(String[] args) {
-        int values[] = {8, 5, 3, 1, 4, 6, 10, 11, 14};
+        // int values[] = {8, 5, 3, 1, 4, 6, 10, 11, 14};
+        int values[] = {3, 4, 5};
         Node root = null;
 
         for (int i = 0; i < values.length; i++) {
@@ -125,7 +165,15 @@ public class BuildBST {
         // inorder(root);
 
         System.out.println();
-        printInRange(root, 5, 12);
+        // printInRange(root, 5, 12);
+        // ArrayList<Integer> path = ;
+        // printRoot2Leaf(root, new ArrayList<>());
+
+        if (isValidBST(root, null, null)) {
+            System.out.println("Valid BST");
+        }else{
+            System.out.println("Invalid BST");
+        }
         
     }
 }

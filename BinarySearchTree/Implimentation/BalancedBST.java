@@ -91,5 +91,6 @@ public class BalancedBST {
         root = balanceBST(root);
         System.out.println();
         preorder(root);
+        
     }
 }

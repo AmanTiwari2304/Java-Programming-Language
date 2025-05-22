@@ -19,7 +19,7 @@ public class BinaryNumbers {
     }
 
     public static void main(String[] args) {
-        int N = 5;  // Example input
+        int N = 9;  // Example input
         generateBinaryNumbers(N);
     }
 }

@@ -28,13 +28,16 @@ public class MaxActivity {
     public static void maxNumActivity(int start[], int end[]){
         // sorting
         int activities[][] = new int[start.length][3];
+        // Here i -> row and 0,1,2 are column number
         for (int i = 0; i < start.length; i++) {
-            activities[i][0] = i;
-            activities[i][1] = start[i];
+            activities[i][0] = i; //store initial index
+            activities[i][1] = start[i]; 
             activities[i][2] = end[i];
         }
         // lamda function -> short form
+        // sorting of column 3  
         Arrays.sort(activities, Comparator.comparingDouble(o -> o[2]));
+        
         
         int maxAct = 0;
         ArrayList<Integer> ans = new ArrayList<>();

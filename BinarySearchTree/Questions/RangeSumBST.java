@@ -2,6 +2,8 @@ package BinarySearchTree.Questions;
 
 import java.util.ArrayList;
 
+import javax.swing.tree.TreeNode;
+
 public class RangeSumBST {
     static class Node {
         int data;
@@ -69,4 +71,23 @@ public class RangeSumBST {
         int L = 5, R = 11;
         System.out.println(rangeSumOfBST(root, L, R));
     }
+
+    // some leetcode questions{
+    //     Arrays.sort(preorder);
+    //     int st = 0; int end = preorder.length - 1;
+    //     return helper(preorder, st, end);
+
+    // }
+
+    // private TreeNode helper(int[] preorder, int st, int end){
+    //     if(st>end) return null;
+    //     int mid = (st+end)/2;
+    //     TreeNode root = new TreeNode(preorder[mid]);
+    //     root.left = helper(preorder, st, mid-1);
+    //     root.right = helper(preorder, mid+1, end);
+    //     return root;
+    // }
+    // }
+
+        
 }

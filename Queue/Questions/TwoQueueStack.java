@@ -19,7 +19,8 @@ public class TwoQueueStack {
                 q2.add(data);
             }
         }
-
+        
+        // remove
         public static int pop(){
             if (isEmpty()) {
                 System.out.println("Empty Stack");

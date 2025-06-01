@@ -59,7 +59,7 @@ public class Classroom {
         for (int i = 0; i < words.length; i++) {
             insert(words[i]);
         }
-        String key = "ilikesamsung";
-        System.out.println(isbreakWordExist(key));
+        // String key = "ilikesamsung";
+        // System.out.println(isbreakWordExist(key));
     }
 }

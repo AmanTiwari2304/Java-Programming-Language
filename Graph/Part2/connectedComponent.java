@@ -2,9 +2,9 @@ package Graph.Part2;
 
 import java.util.*;
 
-import Graph.Part2.connectedComponent.Edge;
 
-public class connectedComponent {
+
+public class ConnectedComponent {
     static class Edge {
         int src;
         int dest;

@@ -28,39 +28,36 @@ public class MotherVertex {
     }
 
     public static int motherVertex(ArrayList<Edge> graph[], int V){
-        boolean visited[] = new boolean[V];
         Queue<Integer> q = new LinkedList<>();
 
         for (int i = 0; i < V; i++) {
-            if (!visited[i]) {
-                visited[i] = true;
-                boolean stack[] = new boolean[V];
-                if (helper(graph, q, stack, i)) {
-                    return i;
-                }
+            boolean visited[] = new boolean[V];
+            if (helper(graph, q, visited, i)) {
+                return i;
             }
+            
         }
         return -1;
     }
 
-    public static boolean helper(ArrayList<Edge> graph[], Queue<Integer> q, boolean stack[], int source){
+    public static boolean helper(ArrayList<Edge> graph[], Queue<Integer> q, boolean visited[], int source){
         q.add(source);
 
         while (!q.isEmpty()) {
             int curr = q.remove();
-            if (!stack[curr]) {
-                stack[curr] = true;
+            if (!visited[curr]) {
+                visited[curr] = true;
                 for (int i = 0; i < graph[curr].size(); i++) {
                     Edge e = graph[curr].get(i);
-                    if (!stack[e.dest]) {
+                    if (!visited[e.dest]) {
                         q.add(e.dest);
                     }
                 }
             }
         }
 
-        for (int i = 0; i < stack.length; i++) {
-            if (!stack[i]) {
+        for (int i = 0; i < visited.length; i++) {
+            if (!visited[i]) {
                 return false;
             }
         }

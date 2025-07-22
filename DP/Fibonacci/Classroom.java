@@ -1,4 +1,4 @@
-package DP.Part1;
+package DP.Fibonacci;
 
 public class Classroom {
     // Memoization

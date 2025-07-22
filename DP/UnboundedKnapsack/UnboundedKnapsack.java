@@ -1,4 +1,4 @@
-package DP.Part2;
+package DP.UnboundedKnapsack;
 
 public class UnboundedKnapsack {
     public static int unboundedKnapsack(int val[], int wt[], int W){

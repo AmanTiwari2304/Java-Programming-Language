@@ -1,4 +1,4 @@
-package DP.Part3;
+package DP.UnboundedKnapsack;
 
 public class CoinChange {
     public static int coinChange(int coins[], int sum){

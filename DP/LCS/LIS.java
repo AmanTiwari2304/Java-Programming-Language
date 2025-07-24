@@ -43,9 +43,32 @@ public class LIS {
         return dp[n][m];
     }
 
+    // EASIEST WAY
+    public static int lis(int arr[]){
+        int n = arr.length;
+        int LIS[] = new int[n];
+
+        for (int i = 0; i < n; i++) {
+            LIS[i] = 1;
+            for (int j = 0; j < i; j++) {
+                if(arr[j] < arr[i]){
+                    LIS[i] = Math.max(LIS[i], LIS[j]+1);
+                }
+                
+            }
+        }
+
+        int max = 0;
+        for (int i = 0; i < n; i++) {
+            max = Math.max(max, LIS[i]);
+        }
+        return max;
+    }
+
 
     public static void main(String[] args) {
         int arr1[] = {50, 3, 10, 7, 40, 80};
-        System.out.println(longestIncreasingSubsequence(arr1));
+        // System.out.println(longestIncreasingSubsequence(arr1));
+        System.out.println(lis(arr1));
     }
 }
